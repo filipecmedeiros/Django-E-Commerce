@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     'core',
+    'catalog',
 ]
 
 MIDDLEWARE = [
@@ -122,6 +123,6 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 try:
-    from .local_settings improt *
+    from .local_settings import *
 except ImportError:
     pass
