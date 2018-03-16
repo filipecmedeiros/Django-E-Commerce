@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/2.0/ref/settings/
 """
 
 import os
+import dj_database_url
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -24,7 +25,7 @@ PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
 SECRET_KEY = 'k+6-0n-wa)4sm#vd)y7%sslzn6$xt$u)87d_8b6$mu9w-5_s*k'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['*']
 
@@ -122,9 +123,15 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
+#Heroku settings
 db_from_env = dj_database_url.config(conn_max_age=500)
 DATABASES['default'].update(db_from_env)
 
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
 STATIC_ROOT = os.path.join(PROJECT_ROOT, 'staticfiles')
+
+try:
+    from .local_settings import *
+except ImportError:
+    pass
