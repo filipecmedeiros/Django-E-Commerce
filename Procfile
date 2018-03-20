@@ -1,1 +1,1 @@
-web: gunicorn djangoecommerce-fcma.wsgi --log-file -
+web: gunicorn djangoecommerce.wsgi --log-file -
